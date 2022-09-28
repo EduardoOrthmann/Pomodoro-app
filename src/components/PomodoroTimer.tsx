@@ -28,6 +28,7 @@ export function PomodoroTimer(props: Props) {
   useInterval(
     () => {
       setMainTime(mainTime - 1);
+      if (isWorking) setFullWorkingTime(fullWorkingTime + 1);
     },
     timeCounting ? 1000 : null,
   );
@@ -92,7 +93,7 @@ export function PomodoroTimer(props: Props) {
 
   return (
     <div className="pomodoro-timer">
-      <h2>You are: working</h2>
+      <h2>Você está {isWorking ? 'trabalhando' : 'descansando'}</h2>
       <Timer mainTime={mainTime} />
       <div className="controls">
         <Button text="Work" onClick={() => configureWork()} />
